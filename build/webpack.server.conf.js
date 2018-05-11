@@ -1,11 +1,17 @@
+const path = require('path')
 const merge = require('webpack-merge')
 const nodeExternals = require('webpack-node-externals')
 const baseConfig = require('./webpack.base.conf.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 module.exports = merge(baseConfig, {
   // 将 entry 指向应用程序的 server entry 文件
-  entry: '../src/entry-server.js',
+  entry: resolve('src/entry-server.js'),
 
   // 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，
   // 并且还会在编译 Vue 组件时，
@@ -17,7 +23,7 @@ module.exports = merge(baseConfig, {
 
   // 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)
   output: {
-    libraryTraget: 'commonjs2'
+    libraryTarget: 'commonjs2'
   },
   
   // https://webpack.js.org/configuration/externals/#function
@@ -35,6 +41,10 @@ module.exports = merge(baseConfig, {
   // 构建为单个 JSON 文件的插件。
   // 默认文件名为 `vue-ssr-server-bundle.json`
   plugins: [
+    new HtmlWebpackPlugin({
+      template: resolve('./index.server.html'),
+      filename: 'index.server.html'
+    }),
     new VueSSRServerPlugin()
   ]
 })

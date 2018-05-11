@@ -8,9 +8,12 @@
 </template>
 
 <script>
-import appleStore from './store/modules/apple.js'
+import appleStore from './store/modules/apple'
+import TitleMixin from './title-mixin'
 
 export default {
+  mixins: [TitleMixin],
+  title: 'apple',
   asyncData ({ store }) {
     store.registerModule('apple', appleStore)
     return store.dispatch('apple/inc')

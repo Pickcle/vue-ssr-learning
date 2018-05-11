@@ -5,6 +5,7 @@
 -->
 <template lang="jade">
   div#app
+    div app
 </template>
 
 <script>

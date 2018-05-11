@@ -1,16 +1,21 @@
 const server = require('express')()
+const Vue = require('vue')
 
-const { createBundleRenderer } = require('vue-server-renderer')
+const { createBundleRenderer, createRenderer } = require('vue-server-renderer')
 
-const htmlTemplate = require('fs').readFileSync('./index.template.html', 'utf-8')
+const htmlTemplate = require('fs').readFileSync('./index.server.html', 'utf-8')
 const serverBundle = require('./dist/vue-ssr-server-bundle.json')
 const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 
 const renderer = createBundleRenderer(serverBundle, {
   runInNewContext: false,
-  template: htmlTemplate,
-  clientManifest
+  // clientManifest,
+  template: htmlTemplate
 })
+
+// const renderer = createRenderer({
+//   template: htmlTemplate
+// })
 
 server.get('*', (req, res) => {
   const appContext = {
@@ -21,8 +26,31 @@ server.get('*', (req, res) => {
     title: 'vue-ssr-demo'
   }
 
-  renderer.renderToString(appContext, htmlContext).then(html => {
-    res.end(html)
+  // const app = new Vue({
+  //   template: `<div>demo</div>`
+  // })
+
+  // renderer.renderToString(app).then(html => {
+  //   res.end(html)
+  // })
+
+  // renderer.renderToString(appContext).then(html => {
+  //   res.end(html)
+  // }).catch(err => {
+  //   console.log(err)
+  // })
+
+  renderer.renderToString((err, html) => {
+    console.log('renderToString', html)
+    if (err) {
+      if (err.code === 404) {
+        res.status(404).end('Page not found')
+      } else {
+        res.status(500).end('Internal Server Error')
+      }
+    } else {
+      res.end(html)
+    }
   })
 })
 
