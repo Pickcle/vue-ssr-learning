@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import apple from './modules/apple'
+import banana from './modules/banana'
+
 Vue.use(Vuex)
 
 const fetchItem = (id) => `something${id}`
@@ -21,6 +24,10 @@ export function createStore () {
       setItem (state, { id, item }) {
         Vue.set(state.items, id, item)
       }
+    },
+    modules: {
+      apple,
+      banana
     }
   })
 }

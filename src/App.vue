@@ -5,11 +5,16 @@
 -->
 <template lang="jade">
   div#app
-    div app
+    apple
 </template>
 
 <script>
+import Apple from './apple.vue'
+
 export default {
+  components: {
+    Apple
+  }
 }
 </script>
 

@@ -5,8 +5,6 @@ export default context => {
     // const { app, router, store } = createApp()
     const { app, store } = createApp()
 
-    console.log('-----xhjLog-----context', context)
-
     context.state = store.state
 
     resolve(app)

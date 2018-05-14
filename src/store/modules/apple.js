@@ -4,9 +4,15 @@ export default {
     count: 0
   }),
   actions: {
-    inc: ({ commit }) => commit('inc')
+    inc: ({ commit }) => {
+      console.log('-----xhjLog-----action inc')
+      return commit('inc')
+    }
   },
   mutations: {
-    inc: state => state.count++
+    inc: state => {
+      state.count++
+      console.log('-----xhjLog-----mutation inc', state.count)
+    }
   }
 }

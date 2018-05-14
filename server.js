@@ -3,13 +3,13 @@ const Vue = require('vue')
 
 const { createBundleRenderer, createRenderer } = require('vue-server-renderer')
 
-const htmlTemplate = require('fs').readFileSync('./index.server.html', 'utf-8')
+const htmlTemplate = require('fs').readFileSync('./index.template.html', 'utf-8')
 const serverBundle = require('./dist/vue-ssr-server-bundle.json')
 const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 
 const renderer = createBundleRenderer(serverBundle, {
   runInNewContext: false,
-  // clientManifest,
+  clientManifest,
   template: htmlTemplate
 })
 
@@ -41,7 +41,6 @@ server.get('*', (req, res) => {
   // })
 
   renderer.renderToString((err, html) => {
-    console.log('renderToString', html)
     if (err) {
       if (err.code === 404) {
         res.status(404).end('Page not found')
