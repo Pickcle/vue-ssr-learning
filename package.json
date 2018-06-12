@@ -1,0 +1,28 @@
+{
+  "name": "vue-ssr-learning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pickcle/vue-ssr-learning.git"
+  },
+  "keywords": [
+    "vue",
+    "ssr",
+    "webpack"
+  ],
+  "author": "Pickcle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pickcle/vue-ssr-learning/issues"
+  },
+  "homepage": "https://github.com/Pickcle/vue-ssr-learning#readme",
+  "devDependencies": {
+    "vue": "^2.5.16",
+    "vue-server-renderer": "^2.5.16"
+  }
+}
