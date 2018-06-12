@@ -12,8 +12,12 @@ server.get('*', (req, res) => {
     template: `<div>访问的 URL 是： {{ url }}</div>`
   })
 
-  renderer.renderToString(app, (err, html) => {
-    console.log(html)
+  const context = {
+    title: 'Vue SSR Demo',
+    meta: `<meta charset="utf-8">`
+  }
+
+  renderer.renderToString(app, context, (err, html) => {
     if (err) {
       res.status(500).end('Internal Server Error')
       return
