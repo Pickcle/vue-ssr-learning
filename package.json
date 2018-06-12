@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/Pickcle/vue-ssr-learning#readme",
   "devDependencies": {
+  },
+  "dependencies": {
     "vue": "^2.5.16",
-    "vue-server-renderer": "^2.5.16"
+    "vue-server-renderer": "^2.5.16",
+    "express": "^4.16.3"
   }
 }
