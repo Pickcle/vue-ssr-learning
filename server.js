@@ -1,8 +1,7 @@
-const Vue = require('vue')
+const path = require('path')
 const server = require('express')()
-const renderer = require('vue-server-renderer').createRenderer({
-  template: require('fs').readFileSync('./src/index.template.html', 'utf-8')
-})
+const { createBundleRenderer } = require('vue-server-renderer')
+const renderer = createBundleRenderer(path.resolve(__dirname, './dist/vue-ssr-server-bundle.json'), {})
 const createApp = require('./src/app.js')
 
 server.get('*', (req, res) => {
