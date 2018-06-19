@@ -1,16 +1,30 @@
 <template>
-  <div>访问的 URL 是： {{ url }}</div>
+  <div class="content">
+    <apple></apple>
+    <banana></banana>
+  </div>
 </template>
 
 <script>
+import Apple from './apple.vue'
+import Banana from './banana.vue'
+
 export default {
   data () {
     return {
-      url: '123'
     }
+  },
+
+  components: {
+    Apple,
+    Banana
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+.content
+  width 500px
+  height 500px
+  background-color gray
 </style>
