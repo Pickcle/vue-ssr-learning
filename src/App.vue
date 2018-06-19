@@ -4,8 +4,10 @@
 
 <script>
 export default {
-  data: {
-    url: '123'
+  data () {
+    return {
+      url: '123'
+    }
   }
 }
 </script>
