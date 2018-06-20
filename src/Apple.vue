@@ -10,11 +10,13 @@
 export default {
   data () {
     return {
-      count: 0
+      count: 10
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+button
+  margin 10px
 </style>
