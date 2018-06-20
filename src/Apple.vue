@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>apple:{{ count }}</div>
-    <button @click="increase">+</button>
-    <button @click="decrease">-</button>
+    <button @click="count++">+</button>
+    <button @click="count--">-</button>
   </div>
 </template>
 
@@ -11,16 +11,6 @@ export default {
   data () {
     return {
       count: 0
-    }
-  },
-
-  methods: {
-    increase () {
-      this.count++
-    },
-
-    decrease () {
-      this.count--
     }
   }
 }

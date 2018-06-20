@@ -1,12 +1,7 @@
 <template>
-  <div id="app">
-    <div>count: {{ count }}</div>
-    <button @click="count++">+</button>
-    <button @click="count--">-</button>
-    <div class="content">
-      <apple></apple>
-      <banana></banana>
-    </div>
+  <div id="app" class="content">
+    <apple></apple>
+    <banana></banana>
   </div>
 </template>
 
@@ -30,7 +25,7 @@ export default {
 
 <style lang="stylus" scoped>
 .content
-  width 500px
+  width 100%
   height 500px
   background-color gray
 </style>
