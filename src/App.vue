@@ -1,7 +1,12 @@
 <template>
-  <div class="content">
-    <apple></apple>
-    <banana></banana>
+  <div id="app">
+    <div>count: {{ count }}</div>
+    <button @click="count++">+</button>
+    <button @click="count--">-</button>
+    <div class="content">
+      <apple></apple>
+      <banana></banana>
+    </div>
   </div>
 </template>
 
@@ -12,6 +17,7 @@ import Banana from './banana.vue'
 export default {
   data () {
     return {
+      count: 0
     }
   },
 
