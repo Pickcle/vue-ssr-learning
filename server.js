@@ -1,7 +1,9 @@
 const fs = require('fs')
 const path = require('path')
-const server = require('express')()
+const express = require('express')
 const { createBundleRenderer } = require('vue-server-renderer')
+
+const app = express()
 
 const template = fs.readFileSync(path.resolve(__dirname, './src/index.template.html'), 'utf-8')
 const serverBundle = require('./dist/vue-ssr-server-bundle.json')
@@ -12,17 +14,19 @@ const renderer = createBundleRenderer(serverBundle, {
   template
 })
 
+app.use('/dist', express.static('./dist'))
+
 // const createApp = require('./src/app.js')
 
-server.get('*', (req, res) => {
+app.get('*', (req, res) => {
   // const templateContext = {
   //   url: req.url
   // }
   // const app = createApp(templateContext)
 
   const htmlContext = {
-    title: 'Vue SSR Demo',
-    meta: `<meta charset="utf-8">`
+    meta: `<meta charset="utf-8">`,
+    title: 'Vue SSR Demo'
   }
 
   renderer.renderToString(htmlContext, (err, html) => {
@@ -34,4 +38,8 @@ server.get('*', (req, res) => {
   })
 })
 
-server.listen(8080)
+const port = 8080
+
+app.listen(port, () => {
+  console.log(`server started at localhost:${port}`)
+})
